@@ -2,7 +2,7 @@ import { Zero } from '@ethersproject/constants';
 import { SwapInfo } from './types';
 
 export const WETHADDR: { [chainId: number]: string } = {
-    1: '0xc579D1f3CF86749E05CD06f7ADe17856c2CE3126',
+    1: '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83',
     3: '0xdFCeA9088c8A88A76FF74892C1457C17dfeef9C1',
     4: '0x80dD2B80FbcFB06505A301d732322e987380EcD6',
     5: '0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd',
