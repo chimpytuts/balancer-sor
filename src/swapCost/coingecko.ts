@@ -7,7 +7,7 @@ const getPlatformId = (chainId: string | number): string => {
         '137': 'polygon-pos',
         '43113': 'avalanche',
         '43114': 'avalanche',
-        '106': 'velas',
+        '250': 'fantom',
     };
 
     return mapping[chainId.toString()] || 'ethereum';
@@ -23,7 +23,7 @@ const getNativeAssetId = (chainId: string | number): string => {
         '42161': 'eth',
         '43113': 'avalanche-2',
         '43114': 'avalanche-2',
-        '106': 'velas',
+        '250': 'fantom',
     };
 
     return mapping[chainId.toString()] || 'eth';
