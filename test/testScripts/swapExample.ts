@@ -232,7 +232,7 @@ export const ADDRESSES = {
 };
 
 // This is the same across networks
-const vaultAddr = '0xBA12222222228d8Ba445958a75a0704d566BF2C8';
+const vaultAddr = '0x82A8d8B59a13eD9df879C1f450a379182661AB59';
 
 async function getSwap(
     provider: JsonRpcProvider,
