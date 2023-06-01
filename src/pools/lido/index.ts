@@ -817,7 +817,7 @@ async function queryBatchSwap(
     assets: string[],
     provider: Provider
 ): Promise<BigNumber> {
-    const vaultAddr = '0x6CfeA6484BF84de19b592fCD36f65A2a9B9CD054';
+    const vaultAddr = '0x82A8d8B59a13eD9df879C1f450a379182661AB59';
     const vaultContract = new Contract(vaultAddr, vaultAbi, provider);
     const funds = {
         sender: AddressZero,
