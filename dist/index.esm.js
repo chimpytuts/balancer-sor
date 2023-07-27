@@ -12232,6 +12232,7 @@ const WETHADDR = {
     43113: '0xd00ae08403B9bbb9124bB305C09058E32C39A48c',
     43114: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
     250: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
+    56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
 };
 const MULTIADDR = {
     1: '0xe82a177bBB67092A4aDF7F046C316016cD1477F6',
@@ -12244,6 +12245,7 @@ const MULTIADDR = {
     43113: '0x53FE8639203D5dfDF735C6f8949BD340Ed6800d5',
     43114: '0x653f3e6c7e2ae666c22e063d87a012c2f13ea416',
     250: '0xe82a177bBB67092A4aDF7F046C316016cD1477F6',
+    56: '0xc24EB740252ea86942e2914B059Afc63Ac44cE37',
 };
 const VAULTADDR = {
     1: '0x82A8d8B59a13eD9df879C1f450a379182661AB59',
@@ -12256,6 +12258,7 @@ const VAULTADDR = {
     43113: '0x9aed52F3074ba468c6ad17822b8833210868c31b',
     43114: '0xad68ea482860cd7077a5D0684313dD3a9BC70fbB',
     250: '0x82A8d8B59a13eD9df879C1f450a379182661AB59',
+    56: '0x36B129B35Ac950b15558973fc246121923E3fD63',
 };
 // Currently only used for Polygon
 // ID of USDC Connecting Pool & USDC token address
@@ -18671,7 +18674,7 @@ const Query = {
     250: queryWithLinear,
     43114: queryWithLinear,
     43113: queryWithLinear,
-    250: queryWithLinear,
+    56: queryWithLinear,
 };
 // Returns all public pools
 function fetchSubgraphPools(subgraphUrl, chainId = 1) {
