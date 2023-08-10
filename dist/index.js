@@ -19627,6 +19627,7 @@ const getNativeAssetId = (chainId) => {
         // TODO: convert through ETH as intermediary
         137: '',
         42161: 'eth',
+        56: 'binance-smart-chain',
         43113: 'avalanche-2',
         43114: 'avalanche-2',
         250: 'fantom',

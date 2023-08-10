@@ -19478,6 +19478,7 @@ const getNativeAssetId = (chainId) => {
         137: '',
         42161: 'eth',
         43113: 'avalanche-2',
+        56: 'binance-smart-chain',
         43114: 'avalanche-2',
         250: 'fantom',
     };
