@@ -12,7 +12,7 @@ export const WETHADDR: { [chainId: number]: string } = {
     43113: '0xd00ae08403B9bbb9124bB305C09058E32C39A48c',
     43114: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
     250: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
-    56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
+    56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
 };
 
 export const MULTIADDR: { [chainId: number]: string } = {
