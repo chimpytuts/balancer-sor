@@ -19466,6 +19466,7 @@ const getPlatformId = (chainId) => {
         43113: 'avalanche',
         43114: 'avalanche',
         250: 'fantom',
+        56: 'binance-smart-chain',
     };
     return mapping[chainId.toString()] || 'ethereum';
 };
@@ -19477,8 +19478,8 @@ const getNativeAssetId = (chainId) => {
         // TODO: convert through ETH as intermediary
         137: '',
         42161: 'eth',
-        43113: 'avalanche-2',
         56: 'binance-smart-chain',
+        43113: 'avalanche-2',
         43114: 'avalanche-2',
         250: 'fantom',
     };
@@ -19516,6 +19517,9 @@ function getTokenPriceInNativeAssetFromSubgraph(
     subgraphUrl
 ) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log('tokenAddress', tokenAddress);
+        console.log('wrappedNativeAssetAddress', wrappedNativeAssetAddress);
+        console.log('subgraphUrl', subgraphUrl);
         const latestTokenPrice = yield fetchSubgraphLatestTokenPrice(
             tokenAddress,
             wrappedNativeAssetAddress,

@@ -8,6 +8,7 @@ const getPlatformId = (chainId: string | number): string => {
         '43113': 'avalanche',
         '43114': 'avalanche',
         '250': 'fantom',
+        '56': 'binance-smart-chain',
     };
 
     return mapping[chainId.toString()] || 'ethereum';
