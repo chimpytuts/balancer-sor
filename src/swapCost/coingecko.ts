@@ -20,9 +20,9 @@ const getNativeAssetId = (chainId: string | number): string => {
         '42': 'eth',
         // CoinGecko does not provide prices in terms of MATIC
         // TODO: convert through ETH as intermediary
-        '137': '',
+        '137': 'eth',
         '42161': 'eth',
-        '56': 'binance-smart-chain',
+        '56': 'bnb',
         '43113': 'avalanche-2',
         '43114': 'avalanche-2',
         '250': 'fantom',
