@@ -63,8 +63,8 @@ export class SwapCostCalculator {
             this.setNativeAssetPriceInToken(tokenAddress, ethPriceInToken);
             return ethPriceInToken;
         } catch (err) {
-            console.log('Error Getting Token Price. Defaulting to 0.');
-            console.log(err);
+            //  console.log('Error Getting Token Price. Defaulting to 0.');
+            //  console.log(err);
             return '0';
         }
     }
