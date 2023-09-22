@@ -19667,9 +19667,9 @@ function getTokenPriceInNativeAssetFromSubgraph(
     subgraphUrl
 ) {
     return __awaiter(this, void 0, void 0, function* () {
-        // console.log('tokenAddress', tokenAddress);
-        // console.log('wrappedNativeAssetAddress', wrappedNativeAssetAddress);
-        // console.log('subgraphUrl', subgraphUrl);
+        console.log('tokenAddress', tokenAddress);
+        console.log('wrappedNativeAssetAddress', wrappedNativeAssetAddress);
+        console.log('subgraphUrl', subgraphUrl);
         const latestTokenPrice = yield fetchSubgraphLatestTokenPrice(
             tokenAddress,
             wrappedNativeAssetAddress,
@@ -19769,8 +19769,8 @@ class SwapCostCalculator {
                 this.setNativeAssetPriceInToken(tokenAddress, ethPriceInToken);
                 return ethPriceInToken;
             } catch (err) {
-                //  console.log('Error Getting Token Price. Defaulting to 0.');
-                //  console.log(err);
+                console.log('Error Getting Token Price. Defaulting to 0.');
+                console.log(err);
                 return '0';
             }
         });
