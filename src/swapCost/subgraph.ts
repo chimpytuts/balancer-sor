@@ -6,9 +6,9 @@ export async function getTokenPriceInNativeAssetFromSubgraph(
     wrappedNativeAssetAddress: string,
     subgraphUrl: string
 ) {
-    console.log('tokenAddress', tokenAddress);
-    console.log('wrappedNativeAssetAddress', wrappedNativeAssetAddress);
-    console.log('subgraphUrl', subgraphUrl);
+    // console.log('tokenAddress', tokenAddress);
+    // console.log('wrappedNativeAssetAddress', wrappedNativeAssetAddress);
+    // console.log('subgraphUrl', subgraphUrl);
 
     const latestTokenPrice = await fetchSubgraphLatestTokenPrice(
         tokenAddress,
