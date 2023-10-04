@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { SubgraphPoolBase } from '../types';
-import { Response } from 'node-fetch'; // If you're in a Node.js environment
+import { RequestInit, Response } from 'node-fetch';
 
 const queryWithLinear = `
       {
@@ -74,12 +74,29 @@ export const Query: { [chainId: number]: string } = {
     56: queryWithLinear,
 };
 
-// Returns all public pools
+async function fetchWithRetry(
+    url: string,
+    options: RequestInit,
+    retries: number = 3
+): Promise<Response> {
+    for (let i = 0; i < retries; i++) {
+        try {
+            const response = await fetch(url, options);
+            if (response.ok) return response;
+            console.error(`Attempt ${i + 1} failed: ${response.statusText}`);
+        } catch (error) {
+            console.error(`Attempt ${i + 1} failed: ${error.message}`);
+        }
+        // Optional: add a delay before retrying, e.g., await new Promise(res => setTimeout(res, 2000));
+    }
+    throw new Error('Max retries exceeded');
+}
+
 export async function fetchSubgraphPools(
     subgraphUrl: string,
     chainId = 1
 ): Promise<{ response: any; pools: SubgraphPoolBase[] }> {
-    const response = await fetch(subgraphUrl, {
+    const response = await fetchWithRetry(subgraphUrl, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -87,14 +104,6 @@ export async function fetchSubgraphPools(
         },
         body: JSON.stringify({ query: Query[chainId] }),
     });
-
-    if (!response.ok) {
-        const text = await response.text();
-        console.error(
-            `Error: ${response.status} ${response.statusText}\n${text}`
-        );
-        throw new Error(`Server responded with status ${response.status}`);
-    }
 
     const jsonResponse = await response.json();
     const pools = jsonResponse.data.pools ?? [];

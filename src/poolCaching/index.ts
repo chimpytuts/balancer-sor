@@ -46,17 +46,15 @@ export class PoolCacher {
                 this.pools = pools;
                 console.log(response); // This will print the entire response
             }
-            // Get latest on-chain balances (returns data in string/normalized format)
-            //this.pools = await this.fetchOnChainBalances(newPools, isOnChain);
 
-            this.finishedFetchingOnChain = true;
+            // ... rest of your code
 
             return true;
         } catch (err) {
-            // On error clear all caches and return false so user knows to try again.
             this.finishedFetchingOnChain = false;
             this.pools = [];
             console.error(`Error: fetchPools(): ${err.message}`);
+            console.error(`URL: ${this.poolsUrl}, Chain ID: ${this.chainId}`);
             return false;
         }
     }
