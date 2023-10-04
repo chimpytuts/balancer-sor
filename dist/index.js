@@ -18836,8 +18836,10 @@ function fetchSubgraphPools(subgraphUrl, chainId = 1) {
             },
             body: JSON.stringify({ query: Query[chainId] }),
         });
-        const { data } = yield response.json();
-        return (_a = data.pools) !== null && _a !== void 0 ? _a : [];
+        const jsonResponse = yield response.json();
+        const pools =
+            (_a = jsonResponse.data.pools) !== null && _a !== void 0 ? _a : [];
+        return { response: jsonResponse, pools };
     });
 }
 
@@ -18867,10 +18869,12 @@ class PoolCacher {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (this.poolsUrl !== null) {
-                    this.pools = yield fetchSubgraphPools(
+                    const { response, pools } = yield fetchSubgraphPools(
                         this.poolsUrl,
                         this.chainId
                     );
+                    this.pools = pools;
+                    console.log(response); // This will print the entire response
                 }
                 // Get latest on-chain balances (returns data in string/normalized format)
                 //this.pools = await this.fetchOnChainBalances(newPools, isOnChain);
