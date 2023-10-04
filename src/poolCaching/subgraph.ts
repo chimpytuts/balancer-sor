@@ -78,7 +78,7 @@ export const Query: { [chainId: number]: string } = {
 export async function fetchSubgraphPools(
     subgraphUrl: string,
     chainId = 1
-): Promise<{ response: Response; pools: SubgraphPoolBase[] }> {
+): Promise<{ response: any; pools: SubgraphPoolBase[] }> {
     const response = await fetch(subgraphUrl, {
         method: 'POST',
         headers: {
@@ -87,6 +87,14 @@ export async function fetchSubgraphPools(
         },
         body: JSON.stringify({ query: Query[chainId] }),
     });
+
+    if (!response.ok) {
+        const text = await response.text();
+        console.error(
+            `Error: ${response.status} ${response.statusText}\n${text}`
+        );
+        throw new Error(`Server responded with status ${response.status}`);
+    }
 
     const jsonResponse = await response.json();
     const pools = jsonResponse.data.pools ?? [];

@@ -18688,6 +18688,13 @@ function fetchSubgraphPools(subgraphUrl, chainId = 1) {
             },
             body: JSON.stringify({ query: Query[chainId] }),
         });
+        if (!response.ok) {
+            const text = yield response.text();
+            console.error(
+                `Error: ${response.status} ${response.statusText}\n${text}`
+            );
+            throw new Error(`Server responded with status ${response.status}`);
+        }
         const jsonResponse = yield response.json();
         const pools =
             (_a = jsonResponse.data.pools) !== null && _a !== void 0 ? _a : [];
