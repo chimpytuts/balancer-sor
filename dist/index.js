@@ -18824,27 +18824,11 @@ const Query = {
     43113: queryWithLinear,
     56: queryWithLinear,
 };
-function fetchWithRetry(url, options, retries = 3) {
-    return __awaiter(this, void 0, void 0, function* () {
-        for (let i = 0; i < retries; i++) {
-            try {
-                const response = yield fetch__default['default'](url, options);
-                if (response.ok) return response;
-                console.error(
-                    `Attempt ${i + 1} failed: ${response.statusText}`
-                );
-            } catch (error) {
-                console.error(`Attempt ${i + 1} failed: ${error.message}`);
-            }
-            // Optional: add a delay before retrying, e.g., await new Promise(res => setTimeout(res, 2000));
-        }
-        throw new Error('Max retries exceeded');
-    });
-}
+// Returns all public pools
 function fetchSubgraphPools(subgraphUrl, chainId = 1) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetchWithRetry(subgraphUrl, {
+        const response = yield fetch__default['default'](subgraphUrl, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -18852,6 +18836,13 @@ function fetchSubgraphPools(subgraphUrl, chainId = 1) {
             },
             body: JSON.stringify({ query: Query[chainId] }),
         });
+        if (!response.ok) {
+            const text = yield response.text();
+            console.error(
+                `Error: ${response.status} ${response.statusText}\n${text}`
+            );
+            throw new Error(`Server responded with status ${response.status}`);
+        }
         const jsonResponse = yield response.json();
         const pools =
             (_a = jsonResponse.data.pools) !== null && _a !== void 0 ? _a : [];
@@ -18892,15 +18883,15 @@ class PoolCacher {
                     this.pools = pools;
                     console.log(response); // This will print the entire response
                 }
-                // ... rest of your code
+                // Get latest on-chain balances (returns data in string/normalized format)
+                //this.pools = await this.fetchOnChainBalances(newPools, isOnChain);
+                this.finishedFetchingOnChain = true;
                 return true;
             } catch (err) {
+                // On error clear all caches and return false so user knows to try again.
                 this.finishedFetchingOnChain = false;
                 this.pools = [];
                 console.error(`Error: fetchPools(): ${err.message}`);
-                console.error(
-                    `URL: ${this.poolsUrl}, Chain ID: ${this.chainId}`
-                );
                 return false;
             }
         });
