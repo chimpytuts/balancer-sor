@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch';
 import { SubgraphPoolBase } from '../types';
-import { Response } from 'node-fetch'; // If you're in a Node.js environment
 
 const queryWithLinear = `
       {
@@ -78,7 +77,7 @@ export const Query: { [chainId: number]: string } = {
 export async function fetchSubgraphPools(
     subgraphUrl: string,
     chainId = 1
-): Promise<{ response: Response; pools: SubgraphPoolBase[] }> {
+): Promise<SubgraphPoolBase[]> {
     const response = await fetch(subgraphUrl, {
         method: 'POST',
         headers: {
@@ -88,8 +87,7 @@ export async function fetchSubgraphPools(
         body: JSON.stringify({ query: Query[chainId] }),
     });
 
-    const jsonResponse = await response.json();
-    const pools = jsonResponse.data.pools ?? [];
+    const { data } = await response.json();
 
-    return { response: jsonResponse, pools };
+    return data.pools ?? [];
 }

@@ -39,13 +39,12 @@ export class PoolCacher {
     ): Promise<boolean> {
         try {
             if (this.poolsUrl !== null) {
-                const { response, pools } = await fetchSubgraphPools(
+                this.pools = await fetchSubgraphPools(
                     this.poolsUrl,
                     this.chainId
                 );
-                this.pools = pools;
-                console.log(response); // This will print the entire response
             }
+
             // Get latest on-chain balances (returns data in string/normalized format)
             //this.pools = await this.fetchOnChainBalances(newPools, isOnChain);
 
