@@ -38,6 +38,11 @@ export class PoolCacher {
         isOnChain = true
     ): Promise<boolean> {
         try {
+            if (poolsData.length > 0) {
+                this.pools = poolsData;
+                this.finishedFetchingOnChain = true;
+                return true;
+            }
             if (this.poolsUrl !== null) {
                 this.pools = await fetchSubgraphPools(
                     this.poolsUrl,

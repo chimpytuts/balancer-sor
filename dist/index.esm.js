@@ -18718,6 +18718,11 @@ class PoolCacher {
     fetchPools(poolsData = [], isOnChain = true) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                if (poolsData.length > 0) {
+                    this.pools = poolsData;
+                    this.finishedFetchingOnChain = true;
+                    return true;
+                }
                 if (this.poolsUrl !== null) {
                     this.pools = yield fetchSubgraphPools(
                         this.poolsUrl,
