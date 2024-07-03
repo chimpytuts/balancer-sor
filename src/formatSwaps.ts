@@ -56,7 +56,7 @@ const formatSequence = (
         let amountScaled = '0';
 
         // First swap needs to be given a value so we inject this from SOR solution
-        /*  if (i === 0) {
+        if (i === 0) {
             // If it's a GIVEN_IN swap then swapAmount is in terms of tokenIn
             // and vice versa for GIVEN_OUT
             const scalingFactor =
@@ -67,7 +67,7 @@ const formatSequence = (
             amountScaled = scale(bnum(swap.swapAmount as string), scalingFactor)
                 .decimalPlaces(0, 1)
                 .toString();
-        } */
+        }
 
         const assetInIndex = tokenAddresses.indexOf(swap.tokenIn);
         const assetOutIndex = tokenAddresses.indexOf(swap.tokenOut);
